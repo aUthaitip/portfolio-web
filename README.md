@@ -1,369 +1,63 @@
-You are a senior Frontend Developer and UI/UX Designer.
-
-Create a premium Portfolio Homepage for a Frontend / Full Stack Developer using:
-
-- Next.js 15 App Router
-- TypeScript
-- Tailwind CSS
-- shadcn/ui
-- Framer Motion
-- Lucide React
-
-Do NOT use MUI or Bootstrap.
-
---------------------------------
-STYLE
---------------------------------
-
-Design Style
-
-• Minimal
-• Elegant
-• Premium
-• Modern
-• Warm
-• Clean
-• Soft
-• Apple-inspired
-• Notion-inspired
-• Luxury coffee aesthetic
-
-The design should feel calm, modern, and professional.
-
-Avoid dark cyber themes.
-
-Use lots of whitespace.
-
---------------------------------
-COLOR PALETTE
---------------------------------
-
-Background
-#F8F4EF
-
-Card
-#FFFDF9
-
-Primary
-#6F4E37
-
-Secondary
-#8B6B4A
-
-Accent
-#D8C3A5
-
-Text
-#2D2A26
-
-Border
-rgba(111,78,55,0.15)
-
---------------------------------
-TYPOGRAPHY
---------------------------------
-
-Headings
-Poppins
-
-Body
-Inter
-
-Large bold headings
-
-Comfortable line height
-
---------------------------------
-NAVBAR
---------------------------------
-
-Sticky Navbar
-
-Logo:
-Portfolio.
-
-Menu
-
-About
-
-Experience
-
-Projects
-
-Skills
-
-Contact
-
-Right side
-
-Language Switch (TH / EN)
-
-Resume Button
-
-Smooth scrolling
-
-Glass effect on scroll
-
---------------------------------
-HERO SECTION
---------------------------------
-
-Large full-screen hero
-
-Left side
-
-Small Greeting
-
-Hello, I'm
-
-Large Name
-
-AUTHAITIP SAENSRI
-
-Role
-
-Frontend Developer
-
-Full Stack Developer
-
-Short introduction
-
-"I build modern, responsive, user-friendly web applications with React, Next.js and TypeScript."
-
-Buttons
-
-View Projects
-
-Download Resume
-
-Social Icons
-
-GitHub
-
-LinkedIn
-
-Email
-
-Right side
-
-Large rounded profile image
-
-Soft background blob
-
-Floating Tech Stack Cards
-
-React
-
-Next.js
-
-TypeScript
-
-Tailwind CSS
-
-Node.js
-
-SEO
-
-Animation
-
-Fade Up
-
-Floating badges
-
-Image hover
-
-Smooth entrance
-
---------------------------------
-ABOUT SECTION
---------------------------------
-
-Two columns
-
-Profile image
-
-About Me
-
-Education
-
-Current Internship
-
-Career Summary
-
-Statistics Cards
-
-Projects Completed
-
-Technologies
-
-Internships
-
-Months Experience
-
-Glass cards
-
-Rounded corners
-
---------------------------------
-EXPERIENCE
---------------------------------
-
-Modern vertical timeline
-
-Software Tester Intern
-
-Frontend Developer Intern
-
-Each card contains
-
-Company
-
-Duration
-
-Responsibilities
-
-Technologies
-
-Timeline animation
-
---------------------------------
-FEATURED PROJECTS
---------------------------------
-
-Responsive Grid
-
-Large cards
-
-Project Thumbnail
-
-Project Name
-
-Description
-
-Technology Badges
-
-Buttons
-
-Live Demo
-
-GitHub
-
-Hover Effects
-
-Image Zoom
-
-Card Lift
-
-Soft Shadow
-
-Gradient Overlay
-
-Featured Badge
-
---------------------------------
-SKILLS
---------------------------------
-
-Categories
-
-Frontend
-
-Backend
-
-Database
-
-SEO
-
-Tools
-
-Each category inside a beautiful rounded card
-
-Display skills as modern badges
-
-Animated when visible
-
---------------------------------
-CONTACT
---------------------------------
-
-Large Contact Section
-
-Email
-
-Phone
-
-GitHub
-
-LinkedIn
-
-Simple Contact Form
-
-Rounded Inputs
-
-Primary Button
-
-Background abstract shapes
-
---------------------------------
-FOOTER
---------------------------------
-
-Simple Footer
-
-Portfolio Logo
-
-Copyright
-
-Back To Top Button
-
---------------------------------
-ANIMATIONS
---------------------------------
-
-Use Framer Motion
-
-Fade Up
-
-Fade Left
-
-Fade Right
-
-Scale
-
-Stagger Children
-
-Hover Lift
-
-Smooth Scroll
-
-Floating Elements
-
-Page Reveal
-
---------------------------------
-RESPONSIVE
---------------------------------
-
-Desktop
-
-Tablet
-
-Mobile
-
-Excellent spacing on every screen
-
---------------------------------
-COMPONENTS
---------------------------------
-
-Use reusable components.
-
-Follow clean architecture.
-
-Use shadcn/ui components whenever possible.
-
-Code should be production-ready.
-
-Follow best practices.
-
-Make the UI look like a real premium developer portfolio rather than a template.
+# Portfolio Website 🚀
+
+Welcome to my personal portfolio website! This is a modern, premium, and fully responsive portfolio built for a Frontend / Full Stack Developer. It showcases my skills, experiences, and featured projects with a clean, minimal, and warm aesthetic.
+
+## 🌟 What This Project Does (Features)
+
+- **Sanity CMS Integration**: The content (Profile, Experiences, Projects) is managed dynamically via Sanity Studio.
+- **Dual-Language Support (i18n)**: Seamlessly switch between Thai (TH) and English (EN) using URL-based routing (`/th`, `/en`).
+- **Interactive Contact Form**: A fully functional contact form validated with Zod & React Hook Form, submitting data directly to a Google Sheet via a custom API.
+- **Smooth Animations**: Uses Framer Motion for beautiful page reveals, fade-ups, and hover effects.
+- **Modern UI Components**: Built with Tailwind CSS and Shadcn/ui for accessible and highly customizable components.
+- **Optimized for SEO**: Fast page loads and best practices provided by Next.js 15 App Router.
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui, Lucide React
+- **Animations**: Framer Motion
+- **CMS**: Sanity
+- **Form Handling**: React Hook Form, Zod
+
+## 🚀 How to Run Locally
+
+Follow these steps to set up and run the project on your local machine:
+
+### 1. Clone the repository
+```bash
+git clone <your-repo-url>
+cd portfolio-web
+```
+
+### 2. Install dependencies
+Make sure you have Node.js installed, then run:
+```bash
+npm install
+```
+
+### 3. Setup Environment Variables
+Create a `.env.local` file in the root directory and add your credentials. It should look like this:
+```env
+# Sanity project connection variables
+NEXT_PUBLIC_SANITY_PROJECT_ID="your_sanity_project_id"
+NEXT_PUBLIC_SANITY_DATASET="production"
+NEXT_PUBLIC_SANITY_API_VERSION="2024-01-01"
+
+# Google Sheet API for Contact Form
+GOOGLE_SHEET_API="your_google_sheet_api_endpoint"
+```
+
+### 4. Start the Development Server
+```bash
+npm run dev
+```
+The website will be available at [http://localhost:3000](http://localhost:3000).
+
+### 5. Access Sanity Studio
+To manage the content (add projects, update experiences, edit profile), navigate to the built-in CMS:
+[http://localhost:3000/studio](http://localhost:3000/studio)
+
+## 🎨 Design Philosophy
+The design language focuses on minimalism, elegance, and professionalism. It embraces generous whitespace, warm background tones, and a cohesive color palette that feels welcoming and premium.
