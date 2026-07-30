@@ -1,36 +1,369 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+You are a senior Frontend Developer and UI/UX Designer.
 
-## Getting Started
+Create a premium Portfolio Homepage for a Frontend / Full Stack Developer using:
 
-First, run the development server:
+- Next.js 15 App Router
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Framer Motion
+- Lucide React
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Do NOT use MUI or Bootstrap.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+--------------------------------
+STYLE
+--------------------------------
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Design Style
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+• Minimal
+• Elegant
+• Premium
+• Modern
+• Warm
+• Clean
+• Soft
+• Apple-inspired
+• Notion-inspired
+• Luxury coffee aesthetic
 
-## Learn More
+The design should feel calm, modern, and professional.
 
-To learn more about Next.js, take a look at the following resources:
+Avoid dark cyber themes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Use lots of whitespace.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+--------------------------------
+COLOR PALETTE
+--------------------------------
 
-## Deploy on Vercel
+Background
+#F8F4EF
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Card
+#FFFDF9
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Primary
+#6F4E37
+
+Secondary
+#8B6B4A
+
+Accent
+#D8C3A5
+
+Text
+#2D2A26
+
+Border
+rgba(111,78,55,0.15)
+
+--------------------------------
+TYPOGRAPHY
+--------------------------------
+
+Headings
+Poppins
+
+Body
+Inter
+
+Large bold headings
+
+Comfortable line height
+
+--------------------------------
+NAVBAR
+--------------------------------
+
+Sticky Navbar
+
+Logo:
+Portfolio.
+
+Menu
+
+About
+
+Experience
+
+Projects
+
+Skills
+
+Contact
+
+Right side
+
+Language Switch (TH / EN)
+
+Resume Button
+
+Smooth scrolling
+
+Glass effect on scroll
+
+--------------------------------
+HERO SECTION
+--------------------------------
+
+Large full-screen hero
+
+Left side
+
+Small Greeting
+
+Hello, I'm
+
+Large Name
+
+AUTHAITIP SAENSRI
+
+Role
+
+Frontend Developer
+
+Full Stack Developer
+
+Short introduction
+
+"I build modern, responsive, user-friendly web applications with React, Next.js and TypeScript."
+
+Buttons
+
+View Projects
+
+Download Resume
+
+Social Icons
+
+GitHub
+
+LinkedIn
+
+Email
+
+Right side
+
+Large rounded profile image
+
+Soft background blob
+
+Floating Tech Stack Cards
+
+React
+
+Next.js
+
+TypeScript
+
+Tailwind CSS
+
+Node.js
+
+SEO
+
+Animation
+
+Fade Up
+
+Floating badges
+
+Image hover
+
+Smooth entrance
+
+--------------------------------
+ABOUT SECTION
+--------------------------------
+
+Two columns
+
+Profile image
+
+About Me
+
+Education
+
+Current Internship
+
+Career Summary
+
+Statistics Cards
+
+Projects Completed
+
+Technologies
+
+Internships
+
+Months Experience
+
+Glass cards
+
+Rounded corners
+
+--------------------------------
+EXPERIENCE
+--------------------------------
+
+Modern vertical timeline
+
+Software Tester Intern
+
+Frontend Developer Intern
+
+Each card contains
+
+Company
+
+Duration
+
+Responsibilities
+
+Technologies
+
+Timeline animation
+
+--------------------------------
+FEATURED PROJECTS
+--------------------------------
+
+Responsive Grid
+
+Large cards
+
+Project Thumbnail
+
+Project Name
+
+Description
+
+Technology Badges
+
+Buttons
+
+Live Demo
+
+GitHub
+
+Hover Effects
+
+Image Zoom
+
+Card Lift
+
+Soft Shadow
+
+Gradient Overlay
+
+Featured Badge
+
+--------------------------------
+SKILLS
+--------------------------------
+
+Categories
+
+Frontend
+
+Backend
+
+Database
+
+SEO
+
+Tools
+
+Each category inside a beautiful rounded card
+
+Display skills as modern badges
+
+Animated when visible
+
+--------------------------------
+CONTACT
+--------------------------------
+
+Large Contact Section
+
+Email
+
+Phone
+
+GitHub
+
+LinkedIn
+
+Simple Contact Form
+
+Rounded Inputs
+
+Primary Button
+
+Background abstract shapes
+
+--------------------------------
+FOOTER
+--------------------------------
+
+Simple Footer
+
+Portfolio Logo
+
+Copyright
+
+Back To Top Button
+
+--------------------------------
+ANIMATIONS
+--------------------------------
+
+Use Framer Motion
+
+Fade Up
+
+Fade Left
+
+Fade Right
+
+Scale
+
+Stagger Children
+
+Hover Lift
+
+Smooth Scroll
+
+Floating Elements
+
+Page Reveal
+
+--------------------------------
+RESPONSIVE
+--------------------------------
+
+Desktop
+
+Tablet
+
+Mobile
+
+Excellent spacing on every screen
+
+--------------------------------
+COMPONENTS
+--------------------------------
+
+Use reusable components.
+
+Follow clean architecture.
+
+Use shadcn/ui components whenever possible.
+
+Code should be production-ready.
+
+Follow best practices.
+
+Make the UI look like a real premium developer portfolio rather than a template.
