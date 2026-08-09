@@ -58,4 +58,47 @@ export default defineType({
       description: 'Detailed content of the project',
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'summary',
+      description: '_type',
+      media: 'mainImage',
+    },
+    prepare(selection) {
+      const { title, subtitle, media } = selection
+      
+      function extractString(value: any): string {
+        if (typeof value === 'string') {
+          return value
+        }
+        if (value && typeof value === 'object') {
+          if (Array.isArray(value)) {
+            const firstBlock = value[0]
+            if (firstBlock && typeof firstBlock === 'object') {
+              if ('children' in firstBlock && Array.isArray(firstBlock.children)) {
+                return firstBlock.children.map((c: any) => c.text).join('')
+              }
+              if ('text' in firstBlock && typeof firstBlock.text === 'string') {
+                return firstBlock.text
+              }
+            }
+            return ''
+          }
+          const localizedValue = value.en || value.th || ''
+          return extractString(localizedValue)
+        }
+        return ''
+      }
+      
+      const displayTitle = extractString(title) || 'Untitled Project'
+      const displaySummary = extractString(subtitle)
+      
+      return {
+        title: displayTitle,
+        subtitle: displaySummary || undefined,
+        media,
+      }
+    },
+  },
 })

@@ -4,29 +4,31 @@ import { useLanguage } from './LanguageContext'
 import { motion } from 'framer-motion'
 import { Code2, FolderKanban, Briefcase, Calendar } from 'lucide-react'
 
+import { aboutData } from '@/data/about'
+
 export default function About() {
-  const { t } = useLanguage()
+  const { lang } = useLanguage()
 
   const stats = [
     {
       icon: <FolderKanban className="w-6 h-6 text-primary" />,
       value: '10+',
-      label: t('โปรเจกต์', 'Projects Completed'),
+      label: aboutData.about.stats.projects[lang],
     },
     {
       icon: <Code2 className="w-6 h-6 text-primary" />,
       value: '15+',
-      label: t('เทคโนโลยี', 'Technologies'),
+      label: aboutData.about.stats.technologies[lang],
     },
     {
       icon: <Briefcase className="w-6 h-6 text-primary" />,
       value: '1',
-      label: t('ที่ฝึกงาน', 'Internships'),
+      label: aboutData.about.stats.internships[lang],
     },
     {
       icon: <Calendar className="w-6 h-6 text-primary" />,
       value: '6+',
-      label: t('เดือน (ประสบการณ์)', 'Months Experience'),
+      label: aboutData.about.stats.experience[lang],
     },
   ]
 
@@ -41,7 +43,7 @@ export default function About() {
             transition={{ duration: 0.5 }}
             className="text-4xl font-heading font-extrabold text-foreground tracking-tight"
           >
-            {t('เกี่ยวกับฉัน', 'About Me')}
+            {aboutData.about.title[lang]}
           </motion.h2>
           <motion.div 
             initial={{ opacity: 0, scale: 0 }}
@@ -61,16 +63,10 @@ export default function About() {
             className="space-y-6 text-lg text-muted-foreground leading-relaxed"
           >
             <p>
-              {t(
-                'ผมมีความหลงใหลในการสร้างสรรค์เว็บไซต์ที่สวยงามและใช้งานง่าย ปัจจุบันกำลังศึกษาและพัฒนาทักษะด้าน Frontend Development โดยเน้นที่ React และ Next.js',
-                "I am passionate about creating beautiful, intuitive, and highly functional web applications. My focus is on Frontend Development, crafting seamless user experiences with React and Next.js."
-              )}
+              {aboutData.about.bio1[lang]}
             </p>
             <p>
-              {t(
-                'ในระหว่างการเรียน ผมได้มีโอกาสฝึกงานในตำแหน่ง Software Tester และ Frontend Developer ซึ่งทำให้ผมเข้าใจกระบวนการพัฒนาซอฟต์แวร์ตั้งแต่ต้นจนจบ และให้ความสำคัญกับคุณภาพของโค้ด',
-                "During my studies, I gained valuable experience working as a Software Tester and Frontend Developer Intern. This provided me with a deep understanding of the software development lifecycle and a strong appreciation for code quality."
-              )}
+              {aboutData.about.bio2[lang]}
             </p>
             <div className="pt-4 flex flex-col gap-3">
               <div className="flex items-center gap-3">

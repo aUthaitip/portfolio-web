@@ -10,13 +10,15 @@ import { Mail, ArrowRight } from 'lucide-react'
 import { Icons } from '@/components/Icons'
 import Link from 'next/link'
 
+import { homeData } from '@/data/home'
+
 export default function Hero({ profile }: { profile: any }) {
-  const { t, lang } = useLanguage()
+  const { lang } = useLanguage()
 
   // Use sanity data if available, fallback to README requested defaults
-  const defaultName = t('อุทัยทิพย์ แสนศรี', 'AUTHAITIP SAENSRI')
-  const defaultRoles = ('Frontend Developer / Full Stack Developer')
-  const defaultBio = t('ฉันสร้างเว็บแอปพลิเคชันที่ทันสมัย ตอบสนองได้ดี และใช้งานง่ายด้วย React, Next.js และ TypeScript.', 'I build modern, responsive, user-friendly web applications with React, Next.js and TypeScript.')
+  const defaultName = homeData.hero.defaultName[lang]
+  const defaultRoles = homeData.hero.defaultRoles
+  const defaultBio = homeData.hero.defaultBio[lang]
 
   const name = typeof profile?.name === 'object' ? (profile?.name?.[lang] || profile?.name?.en || profile?.name?.th) : profile?.name || defaultName
   const roles = typeof profile?.headline === 'object' ? (profile?.headline?.[lang] || profile?.headline?.en || profile?.headline?.th) : profile?.headline || defaultRoles
@@ -44,7 +46,7 @@ export default function Hero({ profile }: { profile: any }) {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="text-primary font-medium tracking-wide mb-2 text-lg"
               >
-                {t('สวัสดีค่ะ ดิฉัน', "Hello, I'm")}
+                {homeData.hero.greeting[lang]}
               </motion.p>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-extrabold text-foreground tracking-tight leading-tight">
                 {name}
@@ -73,14 +75,14 @@ export default function Hero({ profile }: { profile: any }) {
                 href="/projects"
                 className={cn(buttonVariants({ size: 'lg' }), 'rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all gap-2 group font-heading')}
               >
-                {t('ดูผลงาน', 'View Projects')}
+                {homeData.hero.viewProjects[lang]}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <a 
                 href={`mailto:${email}`}
                 className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'rounded-full font-heading bg-transparent border-primary/20 hover:bg-primary/5')}
               >
-                {t('ติดต่อฉัน', 'Contact Me')}
+                {homeData.hero.contactMe[lang]}
               </a>
             </div>
 
