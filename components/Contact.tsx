@@ -11,8 +11,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import contactSchema, { ContactFormData } from '@/schema/contact'
 import { googleSheetAPI } from '@/lib/actions/googleSheetAPI'
 
+import { homeData } from '@/data/home'
+
 export default function Contact() {
-  const { t } = useLanguage()
+  const { lang } = useLanguage()
   const [submitResult, setSubmitResult] = useState<{ success?: boolean; error?: string }>({})
 
   const {
@@ -32,7 +34,7 @@ export default function Contact() {
       setSubmitResult({ success: true })
       reset()
     } else {
-      setSubmitResult({ error: t('ส่งข้อความไม่สำเร็จ กรุณาลองใหม่อีกครั้ง', 'Failed to send. Please try again.') })
+      setSubmitResult({ error: homeData.contact.sendFailed[lang] })
     }
   }
 
@@ -51,7 +53,7 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
             className="text-4xl font-heading font-extrabold text-foreground tracking-tight"
           >
-            {t('ติดต่อฉัน', 'Get in Touch')}
+            {homeData.contact.title[lang]}
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
@@ -72,13 +74,10 @@ export default function Contact() {
           >
             <div>
               <h3 className="text-3xl font-heading font-bold text-foreground mb-4">
-                {t('มาเริ่มสร้างสิ่งที่ยอดเยี่ยมด้วยกันเถอะ!', "Let's build something awesome together!")}
+                {homeData.contact.subtitle[lang]}
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                {t(
-                  'หากคุณมีโปรเจกต์ที่น่าสนใจ หรือกำลังมองหา Frontend Developer มาร่วมทีม สามารถติดต่อผมได้ตลอดเวลาครับ ผมพร้อมที่จะพูดคุยและเรียนรู้สิ่งใหม่ๆ เสมอ',
-                  "Whether you have a project in mind or are looking for a Frontend Developer to join your team, feel free to reach out. I'm always open to discussing new opportunities."
-                )}
+                {homeData.contact.description[lang]}
               </p>
             </div>
 
@@ -88,7 +87,7 @@ export default function Contact() {
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold">{t('อีเมล', 'Email')}</p>
+                  <p className="text-sm font-semibold">{homeData.contact.email[lang]}</p>
                   <a href="mailto:Authaitip.131047@gmail.com" className="text-foreground font-medium hover:text-primary transition-colors">Authaitip.131047@gmail.com</a>
                 </div>
               </div>
@@ -97,7 +96,7 @@ export default function Contact() {
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold">{t('เบอร์โทรศัพท์', 'Phone')}</p>
+                  <p className="text-sm font-semibold">{homeData.contact.phone[lang]}</p>
                   <p className="text-foreground font-medium">+66 98 197 2472</p>
                 </div>
               </div>
@@ -106,7 +105,7 @@ export default function Contact() {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold">{t('ที่อยู่', 'Location')}</p>
+                  <p className="text-sm font-semibold">{homeData.contact.location[lang]}</p>
                   <p className="text-foreground font-medium">Bangkok, Thailand</p>
                 </div>
               </div>
@@ -130,7 +129,7 @@ export default function Contact() {
           >
             <form onSubmit={handleSubmit(onSubmit)} noValidate className="bg-background border border-border p-8 md:p-10 rounded-[2rem] shadow-xl space-y-6">
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-foreground ml-1">{t('ชื่อของคุณ', 'Your Name')}</label>
+                <label className="text-sm font-semibold text-foreground ml-1">{homeData.contact.yourName[lang]}</label>
                 <input
                   type="text"
                   placeholder="John Doe"
@@ -142,7 +141,7 @@ export default function Contact() {
                 )}
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-foreground ml-1">{t('อีเมล', 'Your Email')}</label>
+                <label className="text-sm font-semibold text-foreground ml-1">{homeData.contact.yourEmail[lang]}</label>
                 <input
                   type="email"
                   placeholder="john@example.com"
@@ -154,10 +153,10 @@ export default function Contact() {
                 )}
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-foreground ml-1">{t('ข้อความ', 'Message')}</label>
+                <label className="text-sm font-semibold text-foreground ml-1">{homeData.contact.message[lang]}</label>
                 <textarea
                   rows={4}
-                  placeholder={t('สวัสดี ฉันสนใจที่จะ...', 'Hello, I am interested in...')}
+                  placeholder={homeData.contact.messagePlaceholder[lang]}
                   {...register('message')}
                   className="w-full px-5 py-4 rounded-xl border border-border bg-card focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-muted-foreground/50 resize-none"
                 ></textarea>
@@ -174,12 +173,12 @@ export default function Contact() {
 
               {submitResult.success && (
                 <div className="p-4 bg-green-500/10 text-green-600 dark:text-green-400 text-sm rounded-xl font-semibold">
-                  {t('ส่งข้อความสำเร็จ! ผมจะติดต่อกลับไปโดยเร็วที่สุด', 'Message sent successfully! I will get back to you soon.')}
+                  {homeData.contact.sendSuccess[lang]}
                 </div>
               )}
 
               <Button type="submit" disabled={isSubmitting} size="lg" className="w-full rounded-xl font-heading text-lg h-14 shadow-lg shadow-primary/20 flex items-center gap-2 group">
-                {isSubmitting ? t('กำลังส่ง...', 'Sending...') : t('ส่งข้อความ', 'Send Message')}
+                {isSubmitting ? homeData.contact.sending[lang] : homeData.contact.sendMessage[lang]}
                 {!isSubmitting && <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
               </Button>
             </form>

@@ -3,8 +3,10 @@
 import { useLanguage } from './LanguageContext'
 import { motion } from 'framer-motion'
 
+import { homeData } from '@/data/home'
+
 export default function ExperienceList({ experiences }: { experiences: any[] }) {
-  const { t, lang } = useLanguage()
+  const { lang } = useLanguage()
 
   if (!experiences || experiences.length === 0) return null
 
@@ -19,7 +21,7 @@ export default function ExperienceList({ experiences }: { experiences: any[] }) 
             transition={{ duration: 0.5 }}
             className="text-4xl font-heading font-extrabold text-foreground tracking-tight"
           >
-            {t('ประสบการณ์', 'Experience')}
+            {homeData.experience.title[lang]}
           </motion.h2>
           <motion.div 
             initial={{ opacity: 0, scale: 0 }}
@@ -54,7 +56,7 @@ export default function ExperienceList({ experiences }: { experiences: any[] }) 
                   <div className="bg-card border border-border p-8 rounded-[2rem] shadow-sm hover:shadow-xl transition-shadow duration-300">
                     <div className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full mb-4">
                       {exp.startDate ? new Date(exp.startDate).toLocaleDateString() : ''} -{' '}
-                      {exp.isCurrent ? t('ปัจจุบัน', 'Present') : (exp.endDate ? new Date(exp.endDate).toLocaleDateString() : '')}
+                      {exp.isCurrent ? homeData.experience.present[lang] : (exp.endDate ? new Date(exp.endDate).toLocaleDateString() : '')}
                     </div>
                     <h3 className="text-2xl font-heading font-bold text-foreground mb-1">
                       {typeof exp.jobTitle === 'object' ? (exp.jobTitle?.[lang] || exp.jobTitle?.en || exp.jobTitle?.th) : exp.jobTitle}

@@ -65,24 +65,16 @@ export default function ProjectContent({ project }: { project: any }) {
           )}
         </div>
 
-        {project.mainImage && (
-          <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] rounded-3xl overflow-hidden mb-12 shadow-2xl border border-border">
-            <Image
-              src={urlFor(project.mainImage).url()}
-              alt={projectTitle}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        )}
 
         {project.technologies && project.technologies.length > 0 && (
           <div className="mb-12">
-            <h3 className="text-xl font-heading font-bold mb-4">{t('เทคโนโลยีที่ใช้', 'Technologies')}</h3>
-            <div className="flex flex-wrap gap-2">
+            <h3 className="text-xl font-heading font-bold mb-4 tracking-tight text-foreground/90">{t('เทคโนโลยีที่ใช้', 'Technologies')}</h3>
+            <div className="flex flex-wrap gap-2.5">
               {project.technologies.map((tech: string) => (
-                <span key={tech} className="px-4 py-2 bg-secondary/10 text-secondary-foreground text-sm font-semibold rounded-xl border border-secondary/20">
+                <span 
+                  key={tech} 
+                  className="px-4 py-1.5 bg-gradient-to-r from-primary/5 to-primary/10 hover:from-primary/10 hover:to-primary/15 text-primary text-xs font-mono font-semibold tracking-wider uppercase rounded-full border border-primary/15 hover:border-primary/30 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 cursor-default"
+                >
                   {tech}
                 </span>
               ))}
@@ -96,11 +88,22 @@ export default function ProjectContent({ project }: { project: any }) {
               value={projectContent} 
               components={{
                 types: {
-                  image: ({ value }) => (
-                    <div className="relative w-full h-[400px] my-8 rounded-3xl overflow-hidden">
-                      <Image src={urlFor(value).url()} alt="Content image" fill className="object-contain" />
-                    </div>
-                  )
+                  image: ({ value }) => {
+                    if (!value?.asset) return null
+                    return (
+                      <div className="relative w-full h-[400px] my-8 rounded-3xl overflow-hidden">
+                        <Image src={urlFor(value).url()} alt="Content image" fill className="object-contain" />
+                      </div>
+                    )
+                  },
+                  contentImage: ({ value }) => {
+                    if (!value?.image) return null
+                    return (
+                      <div className="relative w-full h-[400px] my-8 rounded-3xl overflow-hidden">
+                        <Image src={urlFor(value.image).url()} alt="Content image" fill className="object-contain" />
+                      </div>
+                    )
+                  }
                 }
               }}
             />

@@ -6,19 +6,33 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
 
+import { usePathname } from 'next/navigation'
+import { homeData } from '@/data/home'
+import { aboutData } from '@/data/about'
+import { projectsData } from '@/data/projects'
+
 export default function Navbar() {
-  const { lang, toggleLang, t } = useLanguage()
+  const { lang, toggleLang } = useLanguage()
+  const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
   const closeMenu = () => setIsMobileMenuOpen(false)
 
+  const getPageData = () => {
+    if (pathname?.includes('/about')) return aboutData
+    if (pathname?.includes('/projects')) return projectsData
+    return homeData
+  }
+
+  const pageData = getPageData()
+
   const navLinks = [
-    { href: '/about', label: t('เกี่ยวกับ', 'About') },
-    { href: '/#experience', label: t('ประสบการณ์', 'Experience') },
-    { href: '/projects', label: t('ผลงาน', 'Projects') },
-    { href: '/#skills', label: t('ทักษะ', 'Skills') },
-    { href: '/#contact', label: t('ติดต่อ', 'Contact') },
+    { href: '/about', label: pageData.navbar.about[lang] },
+    { href: '/#experience', label: pageData.navbar.experience[lang] },
+    { href: '/projects', label: pageData.navbar.projects[lang] },
+    { href: '/#skills', label: pageData.navbar.skills[lang] },
+    { href: '/#contact', label: pageData.navbar.contact[lang] },
   ]
 
   return (

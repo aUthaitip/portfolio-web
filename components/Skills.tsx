@@ -3,8 +3,10 @@
 import { useLanguage } from './LanguageContext'
 import { motion } from 'framer-motion'
 
+import { homeData } from '@/data/home'
+
 export default function Skills() {
-  const { t } = useLanguage()
+  const { lang } = useLanguage()
 
   const categories = [
     {
@@ -32,7 +34,7 @@ export default function Skills() {
             transition={{ duration: 0.5 }}
             className="text-4xl font-heading font-extrabold text-white tracking-tight"
           >
-            {t('ทักษะความสามารถ', 'Skills & Technologies')}
+            {homeData.skills.title[lang]}
           </motion.h2>
           <motion.div 
             initial={{ opacity: 0, scale: 0 }}
