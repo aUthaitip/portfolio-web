@@ -27,12 +27,18 @@ export default function Navbar() {
 
   const pageData = getPageData()
 
+  const getLocalizedHref = (href: string) => {
+    const prefix = lang === 'en' ? '/en' : '/th'
+    if (href === '/') return prefix
+    return `${prefix}${href}`
+  }
+
   const navLinks = [
-    { href: '/about', label: pageData.navbar.about[lang] },
-    { href: '/#experience', label: pageData.navbar.experience[lang] },
-    { href: '/projects', label: pageData.navbar.projects[lang] },
-    { href: '/#skills', label: pageData.navbar.skills[lang] },
-    { href: '/#contact', label: pageData.navbar.contact[lang] },
+    { href: getLocalizedHref('/about'), label: pageData.navbar.about[lang] },
+    { href: getLocalizedHref('/#experience'), label: pageData.navbar.experience[lang] },
+    { href: getLocalizedHref('/projects'), label: pageData.navbar.projects[lang] },
+    { href: getLocalizedHref('/#skills'), label: pageData.navbar.skills[lang] },
+    { href: getLocalizedHref('/#contact'), label: pageData.navbar.contact[lang] },
   ]
 
   return (
@@ -44,7 +50,7 @@ export default function Navbar() {
     >
       <div className="container-custom">
         <div className="flex justify-between items-center h-20">
-          <Link href="/" onClick={closeMenu} className="shrink-0 font-heading font-extrabold text-2xl tracking-tighter text-white hover:opacity-80 transition-opacity">
+          <Link href={getLocalizedHref('/')} onClick={closeMenu} className="shrink-0 font-heading font-extrabold text-2xl tracking-tighter text-white hover:opacity-80 transition-opacity">
             Portfolio<span className="text-accent">.</span>
           </Link>
           

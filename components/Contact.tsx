@@ -115,9 +115,6 @@ export default function Contact() {
               <a href="https://github.com/aUthaitip" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-background border border-border rounded-2xl flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300 shadow-sm hover:shadow-md">
                 <Icons.Github className="w-5 h-5" />
               </a>
-              <a href="#" className="w-12 h-12 bg-background border border-border rounded-2xl flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300 shadow-sm hover:shadow-md">
-                <Icons.Linkedin className="w-5 h-5" />
-              </a>
             </div>
           </motion.div>
 

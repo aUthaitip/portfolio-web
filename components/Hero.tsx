@@ -64,6 +64,14 @@ export default function Hero({ profile }: { profile: any }) {
                   </span>
                 ))}
               </motion.div>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                className="mt-6 text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed"
+              >
+                {bio}
+              </motion.p>
             </div>
             
             <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
@@ -86,11 +94,6 @@ export default function Hero({ profile }: { profile: any }) {
               {(profile?.githubUrl || true) && (
                 <a href={profile?.githubUrl || 'https://github.com/aUthaitip'} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors hover:-translate-y-1 transform duration-300">
                   <Icons.Github className="w-6 h-6" />
-                </a>
-              )}
-              {(profile?.linkedinUrl || true) && (
-                <a href={profile?.linkedinUrl || '#'} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors hover:-translate-y-1 transform duration-300">
-                  <Icons.Linkedin className="w-6 h-6" />
                 </a>
               )}
               <a href={`mailto:${email}`} className="text-muted-foreground hover:text-primary transition-colors hover:-translate-y-1 transform duration-300">

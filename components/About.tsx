@@ -1,34 +1,36 @@
 'use client'
 
 import { useLanguage } from './LanguageContext'
+import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Code2, FolderKanban, Briefcase, Calendar } from 'lucide-react'
 
 import { aboutData } from '@/data/about'
+import { skillCategories } from '@/data/skills'
 
 export default function About({ profile, projects, experiences }: { profile?: any; projects?: any[]; experiences?: any[] }) {
   const { lang } = useLanguage()
+  const pathname = usePathname()
+  const isAboutPage = pathname?.includes('/about')
+
+  const shortBio = typeof profile?.shortBio === 'object' ? (profile?.shortBio?.[lang] || profile?.shortBio?.en || profile?.shortBio?.th) : profile?.shortBio || ''
+  const fullBio = typeof profile?.fullBio === 'object' ? (profile?.fullBio?.[lang] || profile?.fullBio?.en || profile?.fullBio?.th) : profile?.fullBio || ''
+  const bio = isAboutPage ? fullBio : shortBio
 
   // Calculate dynamic stats
   const projectsCount = projects && projects.length > 0 ? projects.length : 10
   
-  // Calculate unique tech stacks from projects and experiences
+  // Calculate unique tech stacks from the skills list
   const uniqueTechs = new Set<string>()
-  if (projects) {
-    projects.forEach(p => {
-      if (p.technologies) {
-        p.technologies.forEach((t: string) => uniqueTechs.add(t))
+  
+  if (skillCategories) {
+    skillCategories.forEach(cat => {
+      if (cat.skills) {
+        cat.skills.forEach((skill: string) => uniqueTechs.add(skill.trim()))
       }
     })
   }
-  if (experiences) {
-    experiences.forEach(exp => {
-      if (exp.technologies) {
-        exp.technologies.forEach((t: string) => uniqueTechs.add(t))
-      }
-    })
-  }
-  const techCount = uniqueTechs.size > 0 ? uniqueTechs.size : 15
+  const techCount = uniqueTechs.size
 
   // Calculate internship count and months/years of experience
   const internshipsCount = experiences ? experiences.filter(exp => {
@@ -113,7 +115,9 @@ export default function About({ profile, projects, experiences }: { profile?: an
             transition={{ duration: 0.6 }}
             className="space-y-6 text-lg text-muted-foreground leading-relaxed whitespace-pre-line"
           >
-            
+            <p className="text-foreground/90 font-medium">
+              {bio}
+            </p>
             <div className="pt-4 flex flex-col gap-3">
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>

@@ -3,25 +3,13 @@
 import { useLanguage } from './LanguageContext'
 import { motion } from 'framer-motion'
 
+import { skillCategories } from '@/data/skills'
 import { homeData } from '@/data/home'
 
 export default function Skills() {
   const { lang } = useLanguage()
 
-  const categories = [
-    {
-      title: 'Frontend',
-      skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Zustand']
-    },
-    {
-      title: 'Backend & DB',
-      skills: ['Node.js', 'Supabase', 'PostgreSQL', 'Prisma', 'REST API', 'MySQL']
-    },
-    {
-      title: 'Tools & Other',
-      skills: ['Git', 'GitHub', 'Figma', 'Vercel', 'Sanity CMS', 'SEO', 'Postman' , 'Docker']
-    }
-  ]
+  const categories = skillCategories
 
   return (
     <section id="skills" className="py-24 bg-primary">
