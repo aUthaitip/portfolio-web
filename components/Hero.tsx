@@ -114,15 +114,21 @@ export default function Hero({ profile }: { profile: any }) {
                 <div className="absolute inset-0 rounded-[2rem] overflow-hidden shadow-2xl border-8 border-card rotate-3 hover:rotate-0 transition-transform duration-500">
                   <Image
                     src={urlFor(profile.profileImage).url()}
-                    alt={profile.name}
+                    alt={name}
                     fill
                     className="object-cover"
                     priority
                   />
                 </div>
               ) : (
-                <div className="absolute inset-0 rounded-[2rem] bg-linear-to-tr from-secondary/20 to-accent/20 border-8 border-card shadow-xl flex items-center justify-center rotate-3 hover:rotate-0 transition-transform duration-500">
-                  <span className="text-primary/40 font-heading text-xl">Image Placeholder</span>
+                <div className="absolute inset-0 rounded-[2rem] overflow-hidden shadow-2xl border-8 border-card rotate-3 hover:rotate-0 transition-transform duration-500">
+                  <Image
+                    src="/Ice.png"
+                    alt={name}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                 </div>
               )}
               
