@@ -15,11 +15,11 @@ export default function Skills() {
     },
     {
       title: 'Backend & DB',
-      skills: ['Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'Prisma', 'REST API']
+      skills: ['Node.js', 'Supabase', 'PostgreSQL', 'Prisma', 'REST API', 'MySQL']
     },
     {
       title: 'Tools & Other',
-      skills: ['Git', 'GitHub', 'Figma', 'Vercel', 'Sanity CMS', 'SEO', 'Jest']
+      skills: ['Git', 'GitHub', 'Figma', 'Vercel', 'Sanity CMS', 'SEO', 'Postman' , 'Docker']
     }
   ]
 
@@ -32,7 +32,7 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-4xl font-heading font-extrabold text-white tracking-tight"
+            className="text-4xl font-heading font-extrabold text-black tracking-tight"
           >
             {homeData.skills.title[lang]}
           </motion.h2>
@@ -41,7 +41,7 @@ export default function Skills() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="h-1.5 w-20 bg-white mx-auto mt-6 rounded-full"
+            className="h-1.5 w-20 bg-primary mx-auto mt-6 rounded-full"
           />
         </div>
 

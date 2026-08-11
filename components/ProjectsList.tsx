@@ -90,7 +90,7 @@ export default function ProjectsList({ projects }: { projects: any[] }) {
                 {project.technologies && project.technologies.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 mb-6">
                     {project.technologies.map((tech: string) => (
-                      <span key={tech} className="px-2.5 py-0.5 bg-secondary/5 text-secondary-foreground/80 text-[10px] font-semibold rounded-md border border-secondary/15">
+                      <span key={tech} className="px-2.5 py-0.5 bg-secondary/5 text-primary text-[10px] font-semibold rounded-md border border-secondary/15">
                         {tech}
                       </span>
                     ))}

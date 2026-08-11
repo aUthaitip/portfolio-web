@@ -5,6 +5,7 @@ export const profileQuery = groq`*[_type == "profile"][0] {
   headline,
   profileImage,
   shortBio,
+  fullBio,
   email,
   githubUrl,
   linkedinUrl
@@ -37,6 +38,8 @@ export const experiencesQuery = groq`*[_type == "experience"] | order(startDate 
   _id,
   jobTitle,
   company,
+  companyLogo,
+  companyImage,
   startDate,
   endDate,
   isCurrent,

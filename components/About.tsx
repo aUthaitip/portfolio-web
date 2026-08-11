@@ -6,28 +6,79 @@ import { Code2, FolderKanban, Briefcase, Calendar } from 'lucide-react'
 
 import { aboutData } from '@/data/about'
 
-export default function About() {
+export default function About({ profile, projects, experiences }: { profile?: any; projects?: any[]; experiences?: any[] }) {
   const { lang } = useLanguage()
+
+  // Calculate dynamic stats
+  const projectsCount = projects && projects.length > 0 ? projects.length : 10
+  
+  // Calculate unique tech stacks from projects and experiences
+  const uniqueTechs = new Set<string>()
+  if (projects) {
+    projects.forEach(p => {
+      if (p.technologies) {
+        p.technologies.forEach((t: string) => uniqueTechs.add(t))
+      }
+    })
+  }
+  if (experiences) {
+    experiences.forEach(exp => {
+      if (exp.technologies) {
+        exp.technologies.forEach((t: string) => uniqueTechs.add(t))
+      }
+    })
+  }
+  const techCount = uniqueTechs.size > 0 ? uniqueTechs.size : 15
+
+  // Calculate internship count and months/years of experience
+  const internshipsCount = experiences ? experiences.filter(exp => {
+    const title = typeof exp.jobTitle === 'object' ? (exp.jobTitle?.en || exp.jobTitle?.th || '') : exp.jobTitle || ''
+    return title.toLowerCase().includes('intern')
+  }).length : 1
+
+  // Calculate total months of experience from start/end dates
+  let totalMonths = 0
+  if (experiences && experiences.length > 0) {
+    experiences.forEach(exp => {
+      if (exp.startDate) {
+        const start = new Date(exp.startDate)
+        const end = exp.isCurrent || !exp.endDate ? new Date() : new Date(exp.endDate)
+        const diffMonths = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth())
+        totalMonths += Math.max(1, diffMonths) // count at least 1 month per job
+      }
+    })
+  }
+
+  // Format experience value (e.g. "1.5 Yrs" or "6 Mos")
+  let experienceValue = '6+ Mos'
+  if (totalMonths > 0) {
+    if (totalMonths >= 12) {
+      const years = (totalMonths / 12).toFixed(1)
+      experienceValue = `${parseFloat(years)} Yrs`
+    } else {
+      experienceValue = `${totalMonths} Mos`
+    }
+  }
 
   const stats = [
     {
       icon: <FolderKanban className="w-6 h-6 text-primary" />,
-      value: '10+',
+      value: `${projectsCount}+`,
       label: aboutData.about.stats.projects[lang],
     },
     {
       icon: <Code2 className="w-6 h-6 text-primary" />,
-      value: '15+',
+      value: `${techCount}+`,
       label: aboutData.about.stats.technologies[lang],
     },
     {
       icon: <Briefcase className="w-6 h-6 text-primary" />,
-      value: '1',
+      value: `${internshipsCount}`,
       label: aboutData.about.stats.internships[lang],
     },
     {
       icon: <Calendar className="w-6 h-6 text-primary" />,
-      value: '6+',
+      value: experienceValue,
       label: aboutData.about.stats.experience[lang],
     },
   ]
@@ -60,22 +111,17 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-6 text-lg text-muted-foreground leading-relaxed"
+            className="space-y-6 text-lg text-muted-foreground leading-relaxed whitespace-pre-line"
           >
-            <p>
-              {aboutData.about.bio1[lang]}
-            </p>
-            <p>
-              {aboutData.about.bio2[lang]}
-            </p>
+            
             <div className="pt-4 flex flex-col gap-3">
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="font-medium text-foreground">Computer Engineering</span>
+                <span className="font-medium text-foreground">Fullstack Developer</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="font-medium text-foreground">Frontend Developer Intern</span>
+                <span className="font-medium text-foreground">Frontend Developer</span>
               </div>
             </div>
           </motion.div>

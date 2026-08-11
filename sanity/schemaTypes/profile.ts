@@ -31,6 +31,12 @@ export default defineType({
       description: 'A brief introduction about yourself',
     }),
     defineField({
+      name: 'fullBio',
+      title: 'Full About Bio',
+      type: 'localeText',
+      description: 'A detailed biography for your about me section.',
+    }),
+    defineField({
       name: 'email',
       title: 'Email Address',
       type: 'string',

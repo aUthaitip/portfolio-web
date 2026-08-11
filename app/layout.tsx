@@ -6,6 +6,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import { client } from '@/sanity/lib/client'
 import { profileQuery } from '@/sanity/lib/queries'
+import { MouseFollowerGlow, ScrollToTop, PremiumBackground } from '@/components/ui/interactive-effects'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const poppins = Poppins({ 
@@ -28,13 +29,16 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${poppins.variable} font-sans bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary`}>
+      <body className={`${inter.variable} ${poppins.variable} font-sans bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary relative`}>
         <Providers>
+          <PremiumBackground />
+          <MouseFollowerGlow />
           <Navbar />
-          <main className="min-h-screen">
+          <main className="min-h-screen relative z-10">
             {children}
           </main>
           <Footer profileName={profile?.name} />
+          <ScrollToTop />
         </Providers>
       </body>
     </html>

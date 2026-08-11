@@ -66,10 +66,6 @@ export default function Hero({ profile }: { profile: any }) {
               </motion.div>
             </div>
             
-            <p className="text-lg text-gray-500 max-w-2xl leading-relaxed mx-auto lg:mx-0">
-              {bio}
-            </p>
-            
             <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
               <Link 
                 href="/projects"
