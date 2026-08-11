@@ -18,7 +18,7 @@ export const homeData = {
     contactMe: { th: 'ติดต่อฉัน', en: 'Contact Me' },
   },
   projects: {
-    title: { th: 'ผลงานที่โดดเด่น', en: 'Featured Projects' },
+    title: { th: 'ผลงาน', en: 'Projects' },
     liveDemo: { th: 'ดูผลงาน', en: 'Live Demo' },
   },
   experience: {
@@ -32,7 +32,7 @@ export const homeData = {
     title: { th: 'ติดต่อฉัน', en: 'Get in Touch' },
     subtitle: { th: 'มาเริ่มสร้างสิ่งที่ยอดเยี่ยมด้วยกันเถอะ!', en: "Let's build something awesome together!" },
     description: {
-      th: 'หากคุณมีโปรเจกต์ที่น่าสนใจ หรือกำลังมองหา Frontend Developer มาร่วมทีม สามารถติดต่อผมได้ตลอดเวลาครับ ผมพร้อมที่จะพูดคุยและเรียนรู้สิ่งใหม่ๆ เสมอ',
+      th: 'หากคุณมีโปรเจกต์ที่น่าสนใจ หรือกำลังมองหา Frontend Developer มาร่วมทีม สามารถติดต่อฉันได้ตลอดเวลาครับ ฉันพร้อมที่จะพูดคุยและเรียนรู้สิ่งใหม่ๆ เสมอ',
       en: "Whether you have a project in mind or are looking for a Frontend Developer to join your team, feel free to reach out. I'm always open to discussing new opportunities."
     },
     email: { th: 'อีเมล', en: 'Email' },

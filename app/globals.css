@@ -51,7 +51,7 @@
 :root {
   --background: #F8F4EF;
   --foreground: #2D2A26;
-  --card: #FFFDF9;
+  --card: rgba(255, 253, 249, 0.45);
   --card-foreground: #2D2A26;
   --popover: #FFFDF9;
   --popover-foreground: #2D2A26;
@@ -74,7 +74,7 @@
 .dark {
   --background: #2D2A26;
   --foreground: #F8F4EF;
-  --card: #3A3631;
+  --card: rgba(58, 54, 49, 0.45);
   --card-foreground: #F8F4EF;
   --popover: #3A3631;
   --popover-foreground: #F8F4EF;
@@ -108,5 +108,11 @@
 @layer components {
   .container-custom {
     @apply max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 w-full;
+  }
+  
+  /* Apply global transparency to sections of all pages to reveal dynamic grid background */
+  section {
+    background-color: transparent !important;
+    backdrop-filter: blur(8px);
   }
 }

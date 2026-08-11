@@ -7,7 +7,7 @@ export const projectsData = {
     contact: { th: 'ติดต่อ', en: 'Contact' },
   },
   projects: {
-    title: { th: 'ผลงานที่โดดเด่น', en: 'Featured Projects' },
+    title: { th: 'ผลงาน', en: 'Projects' },
     liveDemo: { th: 'ดูผลงาน', en: 'Live Demo' },
   },
   footer: {

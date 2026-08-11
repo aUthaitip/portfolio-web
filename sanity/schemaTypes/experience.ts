@@ -43,6 +43,24 @@ export default defineType({
       type: 'localeText',
       description: 'Describe your responsibilities and achievements.',
     }),
+    defineField({
+      name: 'companyLogo',
+      title: 'Company Logo',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      description: 'Upload the logo of the company.',
+    }),
+    defineField({
+      name: 'companyImage',
+      title: 'Company Workplace/Project Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      description: 'Upload a workplace photo or project image from this company to display on the opposite side of the card.',
+    }),
   ],
   preview: {
     select: {

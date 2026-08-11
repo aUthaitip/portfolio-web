@@ -48,7 +48,7 @@ export default function ProjectsList({ projects }: { projects: any[] }) {
             className="h-1.5 w-20 bg-primary mx-auto mt-6 rounded-full"
           />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {projects.map((project, index) => {
             const projectTitle = typeof project.title === 'object' ? (project.title?.[lang] || project.title?.en || project.title?.th) : project.title
             const projectSummary = typeof project.summary === 'object' ? (project.summary?.[lang] || project.summary?.en || project.summary?.th) : project.summary
@@ -60,52 +60,52 @@ export default function ProjectsList({ projects }: { projects: any[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group bg-background rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-400 overflow-hidden border border-border flex flex-col"
+              className="group bg-card hover:bg-card/90 rounded-[2rem] shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-border/60 flex flex-col"
             >
               {project.mainImage && (
-                <Link href={`/projects/${project.slug?.current}`} className="relative h-48 w-full bg-muted overflow-hidden block">
+                <Link href={`/projects/${project.slug?.current}`} className="relative h-36 w-full bg-muted overflow-hidden block">
                   <Image
                     src={urlFor(project.mainImage).url()}
                     alt={projectTitle}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  {/* Featured Badge */}
-                  <div className="absolute top-3 left-3 bg-background/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold text-primary shadow-sm">
-                    Featured
-                  </div>
+                  <div className="absolute inset-0 bg-linear-to-t from-background/40 via-background/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </Link>
               )}
-              <div className="p-6 flex-1 flex flex-col">
-                <Link href={`/projects/${project.slug?.current}`}>
-                  <h3 className="text-lg sm:text-xl font-heading font-bold text-foreground mb-2 hover:text-primary transition-colors cursor-pointer line-clamp-1">{projectTitle}</h3>
-                </Link>
-                {projectSummary && (
-                  <p className="text-muted-foreground text-sm mb-5 flex-1 line-clamp-2 leading-relaxed">
-                    {projectSummary}
-                  </p>
-                )}
-                {project.technologies && project.technologies.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 mb-6">
-                    {project.technologies.map((tech: string) => (
-                      <span key={tech} className="px-2.5 py-0.5 bg-secondary/5 text-secondary-foreground/80 text-[10px] font-semibold rounded-md border border-secondary/15">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                <div className="flex gap-3 mt-auto pt-4 border-t border-border/40">
+              <div className="p-4 flex-1 flex flex-col justify-between">
+                <div>
+                  <Link href={`/projects/${project.slug?.current}`}>
+                    <h3 className="text-lg font-heading font-extrabold text-foreground mb-1.5 hover:text-primary transition-colors cursor-pointer line-clamp-1">
+                      {projectTitle}
+                    </h3>
+                  </Link>
+                  {projectSummary && (
+                    <p className="text-muted-foreground text-xs mb-3 line-clamp-2 leading-relaxed font-normal">
+                      {projectSummary}
+                    </p>
+                  )}
+                  {project.technologies && project.technologies.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.technologies.map((tech: string) => (
+                        <span key={tech} className="px-2 py-0.5 bg-secondary text-secondary-foreground text-[10px] font-semibold rounded-lg border border-border/40">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                
+                <div className="flex gap-3 pt-3 border-t border-border/40">
                   {project.projectUrl && (
                     <a 
                       href={project.projectUrl} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className={cn(buttonVariants({ variant: 'default', size: 'sm' }), 'flex-1 rounded-lg font-heading text-xs group/btn')}
+                      className={cn(buttonVariants({ variant: 'default', size: 'sm' }), 'flex-1 rounded-xl font-heading text-xs group/btn py-3.5 shadow-sm hover:shadow-md hover:shadow-primary/10 transition-all font-bold')}
                     >
                       {pageData.projects.liveDemo[lang]}
-                      <ExternalLink className="w-3.5 h-3.5 ml-1.5 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                      <ExternalLink className="w-3 h-3 ml-1 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5 transition-transform" />
                     </a>
                   )}
                   {project.githubUrl && (
@@ -113,9 +113,9 @@ export default function ProjectsList({ projects }: { projects: any[] }) {
                       href={project.githubUrl} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'flex-1 rounded-lg font-heading text-xs')}
+                      className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'flex-1 rounded-xl font-heading text-xs py-3.5 border-border/60 hover:bg-secondary/40 font-bold')}
                     >
-                      <Icons.Github className="w-3.5 h-3.5 mr-1.5" />
+                      <Icons.Github className="w-3 h-3 mr-1" />
                       GitHub
                     </a>
                   )}

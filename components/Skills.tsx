@@ -3,25 +3,13 @@
 import { useLanguage } from './LanguageContext'
 import { motion } from 'framer-motion'
 
+import { skillCategories } from '@/data/skills'
 import { homeData } from '@/data/home'
 
 export default function Skills() {
   const { lang } = useLanguage()
 
-  const categories = [
-    {
-      title: 'Frontend',
-      skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Zustand']
-    },
-    {
-      title: 'Backend & DB',
-      skills: ['Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'Prisma', 'REST API']
-    },
-    {
-      title: 'Tools & Other',
-      skills: ['Git', 'GitHub', 'Figma', 'Vercel', 'Sanity CMS', 'SEO', 'Jest']
-    }
-  ]
+  const categories = skillCategories
 
   return (
     <section id="skills" className="py-24 bg-primary">
@@ -32,7 +20,7 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-4xl font-heading font-extrabold text-white tracking-tight"
+            className="text-4xl font-heading font-extrabold text-black tracking-tight"
           >
             {homeData.skills.title[lang]}
           </motion.h2>
@@ -41,7 +29,7 @@ export default function Skills() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="h-1.5 w-20 bg-white mx-auto mt-6 rounded-full"
+            className="h-1.5 w-20 bg-primary mx-auto mt-6 rounded-full"
           />
         </div>
 
