@@ -17,11 +17,9 @@ export default function Hero({ profile }: { profile: any }) {
 
   // Use sanity data if available, fallback to README requested defaults
   const defaultName = homeData.hero.defaultName[lang]
-  const defaultRoles = homeData.hero.defaultRoles
   const defaultBio = homeData.hero.defaultBio[lang]
 
   const name = typeof profile?.name === 'object' ? (profile?.name?.[lang] || profile?.name?.en || profile?.name?.th) : profile?.name || defaultName
-  const roles = typeof profile?.headline === 'object' ? (profile?.headline?.[lang] || profile?.headline?.en || profile?.headline?.th) : profile?.headline || defaultRoles
   const bio = typeof profile?.shortBio === 'object' ? (profile?.shortBio?.[lang] || profile?.shortBio?.en || profile?.shortBio?.th) : profile?.shortBio || defaultBio
   const email = profile?.email || 'contact@example.com'
   
@@ -51,19 +49,7 @@ export default function Hero({ profile }: { profile: any }) {
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-extrabold text-foreground tracking-tight leading-tight">
                 {name}
               </h1>
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-                className="mt-4 flex flex-wrap justify-center lg:justify-start gap-3 items-center text-xl sm:text-2xl text-secondary font-semibold"
-              >
-                {roles.split('/').map((role: string, i: number) => (
-                  <span key={i} className="flex items-center">
-                    {role.trim()}
-                    {i !== roles.split('/').length - 1 && <span className="mx-3 text-amber-950 text-sm">•</span>}
-                  </span>
-                ))}
-              </motion.div>
+
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
