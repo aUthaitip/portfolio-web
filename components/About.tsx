@@ -118,16 +118,7 @@ export default function About({ profile, projects, experiences }: { profile?: an
             <p className="text-foreground/90 font-medium">
               {bio}
             </p>
-            <div className="pt-4 flex flex-col gap-3">
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="font-medium text-foreground">Fullstack Developer</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="font-medium text-foreground">Frontend Developer</span>
-              </div>
-            </div>
+
           </motion.div>
 
           <motion.div 
