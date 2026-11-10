@@ -14,8 +14,8 @@ export const projectId = assertValue(
 export const useCdn = false
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
-  if (v === undefined) {
-    throw new Error(errorMessage)
+  if (v === undefined || (typeof v === 'string' && v.trim() === '')) {
+    throw new Error(`${errorMessage}. Copy .env.example to .env.local, enter your existing Sanity project ID and dataset, then restart the development server.`)
   }
   return v
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useCallback, useEffect } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 // 1. Magnetic Container Component
@@ -13,7 +13,7 @@ export function Magnetic({ children, range = 60, actionScale = 1.1 }: { children
   const springX = useSpring(x, springConfig)
   const springY = useSpring(y, springConfig)
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!ref.current) return
     const { clientX, clientY } = e
     const { left, top, width, height } = ref.current.getBoundingClientRect()
@@ -31,12 +31,12 @@ export function Magnetic({ children, range = 60, actionScale = 1.1 }: { children
       x.set(0)
       y.set(0)
     }
-  }
+  }, [range, x, y])
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     x.set(0)
     y.set(0)
-  }
+  }, [x, y])
 
   useEffect(() => {
     const el = ref.current
@@ -49,7 +49,7 @@ export function Magnetic({ children, range = 60, actionScale = 1.1 }: { children
       window.removeEventListener('mousemove', handleMouseMove)
       if (el) el.removeEventListener('mouseleave', handleMouseLeave)
     }
-  }, [])
+  }, [handleMouseMove, handleMouseLeave])
 
   return (
     <motion.div

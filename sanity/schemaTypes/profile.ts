@@ -1,10 +1,22 @@
 import { defineField, defineType } from 'sanity'
+import { extractPreviewText } from '../lib/preview'
 
 export default defineType({
   name: 'profile',
   title: 'Profile',
   type: 'document',
   fields: [
+    defineField({
+      name: 'education',
+      title: 'Education',
+      type: 'object',
+      fields: [
+        defineField({ name: 'degree', title: 'Degree', type: 'localeString' }),
+        defineField({ name: 'university', title: 'University', type: 'localeString' }),
+        defineField({ name: 'period', title: 'Period', type: 'string' }),
+        defineField({ name: 'gpa', title: 'GPA', type: 'number', validation: (Rule) => Rule.min(0).max(4) }),
+      ],
+    }),
     defineField({
       name: 'name',
       title: 'Full Name',
@@ -62,31 +74,8 @@ export default defineType({
     prepare(selection) {
       const { title, subtitle, media } = selection
       
-      function extractString(value: any): string {
-        if (typeof value === 'string') {
-          return value
-        }
-        if (value && typeof value === 'object') {
-          if (Array.isArray(value)) {
-            const firstBlock = value[0]
-            if (firstBlock && typeof firstBlock === 'object') {
-              if ('children' in firstBlock && Array.isArray(firstBlock.children)) {
-                return firstBlock.children.map((c: any) => c.text).join('')
-              }
-              if ('text' in firstBlock && typeof firstBlock.text === 'string') {
-                return firstBlock.text
-              }
-            }
-            return ''
-          }
-          const localizedValue = value.en || value.th || ''
-          return extractString(localizedValue)
-        }
-        return ''
-      }
-      
-      const displayName = extractString(title) || 'Untitled Profile'
-      const displayHeadline = extractString(subtitle)
+      const displayName = extractPreviewText(title) || 'Untitled Profile'
+      const displayHeadline = extractPreviewText(subtitle)
       
       return {
         title: displayName,

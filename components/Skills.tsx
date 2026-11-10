@@ -1,61 +1,23 @@
 'use client'
 
 import { useLanguage } from './LanguageContext'
-import { motion } from 'framer-motion'
-
 import { skillCategories } from '@/data/skills'
 import { homeData } from '@/data/home'
+import Reveal from './Reveal'
 
 export default function Skills() {
   const { lang } = useLanguage()
-
-  const categories = skillCategories
-
   return (
-    <section id="skills" className="py-24 bg-primary">
+    <section id="skills" className="section-space section-skills" aria-labelledby="skills-title">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl font-heading font-extrabold text-black tracking-tight"
-          >
-            {homeData.skills.title[lang]}
-          </motion.h2>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="h-1.5 w-20 bg-primary mx-auto mt-6 rounded-full"
-          />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {categories.map((category, index) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card border border-border p-8 rounded-[2rem] shadow-sm hover:shadow-xl transition-shadow duration-300"
-            >
-              <h3 className="text-2xl font-heading font-bold text-primary mb-6">{category.title}</h3>
-              <div className="flex flex-wrap gap-3">
-                {category.skills.map((skill) => (
-                  <span 
-                    key={skill} 
-                    className="px-4 py-2 bg-secondary text-secondary-foreground text-sm font-semibold rounded-xl"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+        <Reveal><div className="section-heading"><h2 id="skills-title">{homeData.skills.title[lang]}</h2><span className="section-heading-rule" aria-hidden="true" /></div></Reveal>
+        <div className="skills-list">
+          {skillCategories.map(category => <Reveal key={category.title}>
+            <div className="skill-row">
+              <h3>{category.title}</h3>
+              <ul>{category.skills.map(skill => <li key={skill}>{skill}</li>)}</ul>
+            </div>
+          </Reveal>)}
         </div>
       </div>
     </section>
