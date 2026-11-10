@@ -183,7 +183,7 @@ h2 { font-family: var(--font-editorial), var(--font-thai), serif; font-size: cla
 .project-grid > .reveal:nth-child(4n + 2) .project-media { background: #e6ecd8; }
 .project-grid > .reveal:nth-child(4n + 3) .project-media { background: #cfe3da; }
 .project-grid > .reveal:nth-child(4n + 4) .project-media { background: #e0e6d4; }
-.project-image { object-fit: contain; padding: 18px; transition: transform 220ms ease-out; }
+.project-image { object-fit: cover; padding: 0; transition: transform 220ms ease-out; }
 .project-media-icon .project-image { padding: 25%; }
 .project-media-title { display: flex; height: 100%; align-items: center; padding: 40px; font-family: var(--font-editorial), var(--font-thai), serif; font-size: clamp(24px, 3vw, 42px); line-height: 1.2; color: var(--primary); }
 .project-copy { padding-top: 24px; }
@@ -285,7 +285,7 @@ h2 { font-family: var(--font-editorial), var(--font-thai), serif; font-size: cla
 .project-detail-summary { max-width: 900px; margin-top: 32px; font-size: 17px; color: var(--muted-foreground); line-height: 1.95; white-space: pre-line; }
 .project-detail-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-block: 32px; }
 .project-detail-image { position: relative; width: 100%; aspect-ratio: 1.9; margin-block: 48px; background: var(--muted); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
-.project-detail-image img { object-fit: contain; padding: 24px; }
+.project-detail-image img { object-fit: cover; padding: 0; }
 .project-detail-image.is-icon img { padding: 16%; }
 .project-detail-technologies { border-block: 1px solid var(--border); padding-block: 26px; margin-top: 40px; }
 .project-detail-technologies h2 { font: 600 13px var(--font-manrope), var(--font-thai), sans-serif; letter-spacing: 0; margin-bottom: 16px; }
@@ -361,7 +361,7 @@ h2 { font-family: var(--font-editorial), var(--font-thai), serif; font-size: cla
   .project-wide .project-item { display: block; padding-bottom: 0; border-bottom: 0; }
   .project-wide .project-copy { padding-top: 22px; }
   .project-copy h3 { font-size: 30px; }
-  .project-image { padding: 12px; }
+  .project-image { padding: 0; }
   .project-summary { font-size: 14px; -webkit-line-clamp: 4; }
   .technology-list { gap: 4px 10px; margin-top: 16px; }
   .technology-list li { font-size: 12px; }
@@ -394,7 +394,7 @@ h2 { font-family: var(--font-editorial), var(--font-thai), serif; font-size: cla
   .project-detail-summary { font-size: 15px; margin-top: 24px; }
   .project-detail-actions .portfolio-button { padding-inline: 16px; }
   .project-detail-image { aspect-ratio: 1.35; margin-block: 32px; }
-  .project-detail-image img { padding: 12px; }
+  .project-detail-image img { padding: 0; }
   .project-rich-content { font-size: 15px; margin-top: 36px; }
 }
 @media (prefers-reduced-motion: reduce) {
