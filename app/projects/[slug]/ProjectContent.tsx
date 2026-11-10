@@ -7,7 +7,7 @@ import { PortableText } from '@portabletext/react'
 import { buttonVariants } from '@/components/ui/button'
 import { ArrowUpRight, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
-import { localized, localizedHref, smallImage, type Project } from '@/lib/portfolio'
+import { localized, localizedHref, smallImage, projectImageRatio, type Project } from '@/lib/portfolio'
 import Reveal from '@/components/Reveal'
 
 export default function ProjectContent({ project }: { project: Project }) {
@@ -26,7 +26,7 @@ export default function ProjectContent({ project }: { project: Project }) {
           {project.githubUrl && <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: 'soft', size: 'lg' })}>GitHub<ArrowUpRight data-icon="inline-end" aria-hidden="true" /></a>}
           {project.figmaUrl && <a href={project.figmaUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: 'soft', size: 'lg' })}>{t('ดูงานออกแบบใน Figma', 'View Design in Figma')}<ArrowUpRight data-icon="inline-end" aria-hidden="true" /></a>}
         </div>
-        {project.mainImage && <div className={`project-detail-image${smallImage(project.mainImage) ? ' is-icon' : ''}`}><Image src={smallImage(project.mainImage) ? urlFor(project.mainImage).url() : urlFor(project.mainImage).width(1600).auto('format').url()} alt={title} fill sizes="(max-width: 767px) 92vw, 90vw" loading="eager" fetchPriority="high" unoptimized={smallImage(project.mainImage)} /></div>}
+        {project.mainImage && <div className={`project-detail-image${smallImage(project.mainImage) ? ' is-icon' : ''}`} style={{ aspectRatio: projectImageRatio(project.mainImage, 1.9) }}><Image src={smallImage(project.mainImage) ? urlFor(project.mainImage).url() : urlFor(project.mainImage).width(1600).auto('format').url()} alt={title} fill sizes="(max-width: 767px) 92vw, 90vw" loading="eager" fetchPriority="high" unoptimized={smallImage(project.mainImage)} /></div>}
         {!!project.technologies?.length && <div className="project-detail-technologies"><h2>{t('เทคโนโลยีที่ใช้', 'Technologies')}</h2><ul className="technology-list">{project.technologies.map(tech => <li key={tech}>{tech}</li>)}</ul></div>}
       </Reveal>
       {content && <div className="project-rich-content"><PortableText value={content} components={{

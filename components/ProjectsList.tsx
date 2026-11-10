@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import { homeData } from '@/data/home'
-import { localized, localizedHref, smallImage, type Project } from '@/lib/portfolio'
+import { localized, localizedHref, smallImage, projectImageRatio, type Project } from '@/lib/portfolio'
 import Reveal from './Reveal'
 import { buttonVariants } from '@/components/ui/button'
 import { usePathname } from 'next/navigation'
@@ -32,7 +32,7 @@ export default function ProjectsList({ projects }: { projects: Project[] }) {
             const detailsHref = project.slug?.current ? localizedHref(`/projects/${project.slug.current}`, lang) : undefined
             const isSmall = project.mainImage ? smallImage(project.mainImage) : false
             const media = (
-              <div className={`project-media${isSmall ? ' project-media-icon' : ''}`}>
+              <div className={`project-media${isSmall ? ' project-media-icon' : ''}`} style={{ aspectRatio: projectImageRatio(project.mainImage) }}>
                 {project.mainImage ? <Image
                   src={isSmall ? urlFor(project.mainImage).url() : urlFor(project.mainImage).width(1400).auto('format').url()}
                   alt={title}

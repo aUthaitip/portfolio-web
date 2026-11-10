@@ -62,3 +62,11 @@ export function smallImage(source: SanityImageSource): boolean {
   const dimensions = ref.match(/-(\d+)x(\d+)-/)
   return !!dimensions && Number(dimensions[1]) < 160
 }
+
+/** Let landscape screenshots set the frame shape, with a bounded height for portrait assets. */
+export function projectImageRatio(source: SanityImageSource | undefined, minimum = 1.58): number {
+  const ref = (source as { asset?: { _ref?: string } } | undefined)?.asset?._ref || ''
+  const dimensions = ref.match(/-(\d+)x(\d+)-/)
+  if (!dimensions || Number(dimensions[2]) === 0) return minimum
+  return Math.max(Number(dimensions[1]) / Number(dimensions[2]), minimum)
+}
