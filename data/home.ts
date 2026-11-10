@@ -9,7 +9,7 @@ export const homeData = {
   hero: {
     greeting: { th: 'สวัสดีค่ะ ดิฉัน', en: "Hello, I'm" },
     defaultName: { th: 'อุทัยทิพย์ แสนศรี', en: 'AUTHAITIP SAENSRI' },
-    defaultRoles: 'Frontend Developer / Full Stack Developer',
+    defaultRoles: 'Web Developer | Junior Full Stack Developer | System Analyst | Website Support',
     defaultBio: { 
       th: 'ฉันสร้างเว็บแอปพลิเคชันที่ทันสมัย ตอบสนองได้ดี และใช้งานง่ายด้วย React, Next.js และ TypeScript.', 
       en: 'I build modern, responsive, user-friendly web applications with React, Next.js and TypeScript.' 
@@ -30,10 +30,10 @@ export const homeData = {
   },
   contact: {
     title: { th: 'ติดต่อฉัน', en: 'Get in Touch' },
-    subtitle: { th: 'มาเริ่มสร้างสิ่งที่ยอดเยี่ยมด้วยกันเถอะ!', en: "Let's build something awesome together!" },
+    subtitle: { th: 'มาร่วมงานกัน', en: "Let's work together." },
     description: {
-      th: 'หากคุณมีโปรเจกต์ที่น่าสนใจ หรือกำลังมองหา Frontend Developer มาร่วมทีม สามารถติดต่อฉันได้ตลอดเวลาครับ ฉันพร้อมที่จะพูดคุยและเรียนรู้สิ่งใหม่ๆ เสมอ',
-      en: "Whether you have a project in mind or are looking for a Frontend Developer to join your team, feel free to reach out. I'm always open to discussing new opportunities."
+      th: 'หากคุณกำลังมองหา Junior Full Stack Developer, System Analyst หรือผู้ดูแลเว็บไซต์ สามารถติดต่อฉันเพื่อพูดคุยเกี่ยวกับตำแหน่งงานและโอกาสร่วมงานได้ค่ะ',
+      en: "For Junior Full Stack Developer, System Analyst, or Website Support opportunities, get in touch to discuss the role and how my skills could fit your team."
     },
     email: { th: 'อีเมล', en: 'Email' },
     phone: { th: 'เบอร์โทรศัพท์', en: 'Phone' },
@@ -44,7 +44,7 @@ export const homeData = {
     messagePlaceholder: { th: 'สวัสดี ฉันสนใจที่จะ...', en: 'Hello, I am interested in...' },
     sending: { th: 'กำลังส่ง...', en: 'Sending...' },
     sendMessage: { th: 'ส่งข้อความ', en: 'Send Message' },
-    sendSuccess: { th: 'ส่งข้อความสำเร็จ! ผมจะติดต่อกลับไปโดยเร็วที่สุด', en: 'Message sent successfully! I will get back to you soon.' },
+    sendSuccess: { th: 'ส่งข้อความสำเร็จ! ฉันจะติดต่อกลับไปโดยเร็วที่สุดค่ะ', en: 'Message sent successfully! I will get back to you soon.' },
     sendFailed: { th: 'ส่งข้อความไม่สำเร็จ กรุณาลองใหม่อีกครั้ง', en: 'Failed to send. Please try again.' }
   },
   footer: {

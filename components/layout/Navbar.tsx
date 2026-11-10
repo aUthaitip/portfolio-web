@@ -1,112 +1,57 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLanguage } from '../LanguageContext'
-import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
-
 import { usePathname } from 'next/navigation'
 import { homeData } from '@/data/home'
-import { aboutData } from '@/data/about'
-import { projectsData } from '@/data/projects'
+import { localizedHref } from '@/lib/portfolio'
+import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 
 export default function Navbar() {
-  const { lang, toggleLang } = useLanguage()
+  const { lang, toggleLang, t } = useLanguage()
   const pathname = usePathname()
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
-  const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
-  const closeMenu = () => setIsMobileMenuOpen(false)
-
-  const getPageData = () => {
-    if (pathname?.includes('/about')) return aboutData
-    if (pathname?.includes('/projects')) return projectsData
-    return homeData
-  }
-
-  const pageData = getPageData()
-
-  const getLocalizedHref = (href: string) => {
-    const prefix = lang === 'en' ? '/en' : '/th'
-    if (href === '/') return prefix
-    return `${prefix}${href}`
-  }
-
-  const navLinks = [
-    { href: getLocalizedHref('/about'), label: pageData.navbar.about[lang] },
-    { href: getLocalizedHref('/#experience'), label: pageData.navbar.experience[lang] },
-    { href: getLocalizedHref('/projects'), label: pageData.navbar.projects[lang] },
-    { href: getLocalizedHref('/#skills'), label: pageData.navbar.skills[lang] },
-    { href: getLocalizedHref('/#contact'), label: pageData.navbar.contact[lang] },
+  const [isOpen, setIsOpen] = useState(false)
+  const closeMenu = () => setIsOpen(false)
+  const changeLanguage = () => { toggleLang(); closeMenu() }
+  const links = [
+    { href: '/about', label: homeData.navbar.about[lang] },
+    { href: '/#experience', label: homeData.navbar.experience[lang] },
+    { href: '/projects', label: homeData.navbar.projects[lang] },
+    { href: '/#skills', label: homeData.navbar.skills[lang] },
+    { href: '/#contact', label: homeData.navbar.contact[lang] },
   ]
+  useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 901px)')
+    const onChange = (event: MediaQueryListEvent) => { if (event.matches) setIsOpen(false) }
+    desktop.addEventListener('change', onChange)
+    return () => desktop.removeEventListener('change', onChange)
+  }, [])
+  const isActive = (href: string) => !href.includes('#') && pathname?.replace(/^\/(en|th)(?=\/|$)/, '').startsWith(href)
+  const languageControl = <button type="button" onClick={changeLanguage} className="language-toggle" aria-label={lang === 'th' ? 'Switch to English' : 'เปลี่ยนเป็นภาษาไทย'}><span className={lang === 'en' ? 'is-current' : ''}>EN</span><span className="language-divider" aria-hidden="true">/</span><span className={lang === 'th' ? 'is-current' : ''}>TH</span></button>
 
   return (
-    <motion.nav 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: 'spring', stiffness: 100 }}
-      className="sticky top-0 z-50 w-full backdrop-blur-xl bg-primary border-b border-border transition-colors duration-300 shadow-sm"
-    >
-      <div className="container-custom">
-        <div className="flex justify-between items-center h-20">
-          <Link href={getLocalizedHref('/')} onClick={closeMenu} className="shrink-0 font-heading font-extrabold text-2xl tracking-tighter text-white hover:opacity-80 transition-opacity">
-            Portfolio<span className="text-accent">.</span>
-          </Link>
-          
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex space-x-10 text-sm font-semibold text-white">
-            {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="hover:text-primary transition-colors">
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-4">
-            <button
-              onClick={toggleLang}
-              className="font-semibold text-sm hover:text-amber-100 transition-colors w-8 text-center text-white"
-            >
-              {lang === 'th' ? 'EN' : 'TH'}
-            </button>
-            
-            {/* Mobile Menu Toggle */}
-            <button 
-              className="lg:hidden p-2 text-muted-foreground hover:text-white transition-colors"
-              onClick={toggleMenu}
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+    <header className="site-header">
+      <nav className="container-custom nav-shell" aria-label={t('เมนูหลัก', 'Main navigation')}>
+        <Link href={localizedHref('/', lang)} onClick={closeMenu} className="wordmark">Portfolio<span>.</span></Link>
+        <div className="nav-desktop">{links.map(link => <Link href={localizedHref(link.href, lang)} key={link.href} className="nav-link" aria-current={isActive(link.href) ? 'page' : undefined}>{link.label}</Link>)}</div>
+        <div className="nav-controls">
+          {languageControl}
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger render={<button type="button" className="menu-toggle" aria-label={t('เปิดเมนู', 'Open menu')} />}><Menu aria-hidden="true" /></SheetTrigger>
+            <SheetContent side="right" showCloseButton={false} className="mobile-menu-sheet">
+              <SheetHeader>
+                <SheetTitle className="sr-only">{t('เมนูหลัก', 'Main navigation')}</SheetTitle>
+                <Link href={localizedHref('/', lang)} onClick={closeMenu} className="wordmark">Portfolio<span>.</span></Link>
+                <SheetClose render={<button type="button" className="drawer-close" aria-label={t('ปิดเมนู', 'Close menu')} />}><X aria-hidden="true" /></SheetClose>
+              </SheetHeader>
+              <nav id="mobile-navigation" className="mobile-menu-links" aria-label={t('เมนูมือถือ', 'Mobile navigation')}>{links.map(link => <Link href={localizedHref(link.href, lang)} key={link.href} className="nav-link" onClick={closeMenu} aria-current={isActive(link.href) ? 'page' : undefined}>{link.label}</Link>)}</nav>
+              <SheetFooter>{languageControl}</SheetFooter>
+            </SheetContent>
+          </Sheet>
         </div>
-      </div>
-
-      {/* Mobile Nav Dropdown */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden border-t border-border bg-background/95 backdrop-blur-xl overflow-hidden"
-          >
-            <div className="flex flex-col px-4 pt-2 pb-6 space-y-4">
-              {navLinks.map((link) => (
-                <Link 
-                  key={link.href} 
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="text-lg font-semibold text-muted-foreground hover:text-primary transition-colors py-2 border-b border-border/50"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+      </nav>
+    </header>
   )
 }

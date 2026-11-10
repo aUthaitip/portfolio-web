@@ -8,7 +8,7 @@ export default async function ProjectsPage() {
   const projects = await client.fetch(projectsQuery)
 
   return (
-    <div className="flex flex-col min-h-screen pt-20">
+    <div className="interior-page">
       <ProjectsList projects={projects} />
     </div>
   )

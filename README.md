@@ -9,11 +9,11 @@ Welcome to my personal portfolio website! This is a modern, premium, and fully r
 - **Interactive Contact Form**: A fully functional contact form validated with Zod & React Hook Form, submitting data directly to a Google Sheet via a custom API.
 - **Smooth Animations**: Uses Framer Motion for beautiful page reveals, fade-ups, and hover effects.
 - **Modern UI Components**: Built with Tailwind CSS and Shadcn/ui for accessible and highly customizable components.
-- **Optimized for SEO**: Fast page loads and best practices provided by Next.js 15 App Router.
+- **Optimized for SEO**: Fast page loads and best practices provided by Next.js 16 App Router.
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 15 (App Router)
+- **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **UI Components**: shadcn/ui, Lucide React
@@ -61,3 +61,12 @@ To manage the content (add projects, update experiences, edit profile), navigate
 
 ## 🎨 Design Philosophy
 The design language focuses on minimalism, elegance, and professionalism. It embraces generous whitespace, warm background tones, and a cohesive color palette that feels welcoming and premium.
+## Resume refresh and design projects
+
+Projects, profile photos, and contact links come from Sanity. The Hero and About career text use the reviewed bilingual resume in `data/resume.ts`, so the confirmed graduate status, five-month internship summary, target roles, education, and GPA 3.00 appear immediately. The content-sync script can also publish these reviewed updates to the CMS when a write token is configured.
+
+1. Configure `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET` in `.env.local`.
+2. Run `npm run resume:sync` to preview the proposed content updates. The script matches existing projects by title, slug, or website URL and preserves their media, detailed content, and existing slugs. PawPlan keeps its existing website and repository links.
+3. To publish the reviewed updates, add `SANITY_API_WRITE_TOKEN` to `.env.local` and run `npm run resume:sync -- --apply`. Keep this token server-only. Duplicate matches or unpublished drafts stop the update for review.
+
+To add a Figma project, open `/studio`, create a Project, choose **UI/UX Design**, and fill in the title, slug, summary, screenshot, and **Figma Design / Prototype URL**. Use the detailed content to explain the problem, your role, user flows, and design decisions. Publish to show it on the website. Existing projects without a type continue to display as websites.

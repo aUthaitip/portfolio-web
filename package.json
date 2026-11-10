@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "resume:sync": "node --experimental-strip-types scripts/sync-resume.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

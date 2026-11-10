@@ -18,13 +18,13 @@ export default async function Home() {
   ])
 
   return (
-    <div className="flex flex-col gap-0 pb-0 [&>section]:bg-transparent [&>section]:backdrop-blur-sm">
+    <div className="home-page">
       <Hero profile={profile} />
-      <About profile={profile} projects={projects} experiences={experiences} />
       <ProjectsList projects={projects} />
       <ExperienceList experiences={experiences} />
+      <About profile={profile} projects={projects} experiences={experiences} />
       <Skills />
-      <Contact />
+      <Contact profile={profile} />
     </div>
   )
 }

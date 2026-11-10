@@ -8,7 +8,8 @@ export const profileQuery = groq`*[_type == "profile"][0] {
   fullBio,
   email,
   githubUrl,
-  linkedinUrl
+  linkedinUrl,
+  education
 }`
 
 export const projectsQuery = groq`*[_type == "project"] | order(_createdAt desc) {
@@ -19,7 +20,9 @@ export const projectsQuery = groq`*[_type == "project"] | order(_createdAt desc)
   summary,
   technologies,
   projectUrl,
-  githubUrl
+  githubUrl,
+  projectType,
+  figmaUrl
 }`
 
 export const projectBySlugQuery = groq`*[_type == "project" && slug.current == $slug][0] {
@@ -31,7 +34,9 @@ export const projectBySlugQuery = groq`*[_type == "project" && slug.current == $
   content,
   technologies,
   projectUrl,
-  githubUrl
+  githubUrl,
+  projectType,
+  figmaUrl
 }`
 
 export const experiencesQuery = groq`*[_type == "experience"] | order(startDate desc) {
@@ -42,6 +47,7 @@ export const experiencesQuery = groq`*[_type == "experience"] | order(startDate 
   companyImage,
   startDate,
   endDate,
+  durationMonths,
   isCurrent,
   description
 }`

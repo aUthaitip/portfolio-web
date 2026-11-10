@@ -1,10 +1,18 @@
 import { defineField, defineType } from 'sanity'
+import { extractPreviewText } from '../lib/preview'
 
 export default defineType({
   name: 'experience',
   title: 'Experience',
   type: 'document',
   fields: [
+    defineField({
+      name: 'durationMonths',
+      title: 'Actual Duration (Months)',
+      type: 'number',
+      description: 'Confirmed duration, used instead of estimating from calendar dates.',
+      validation: (Rule) => Rule.positive(),
+    }),
     defineField({
       name: 'jobTitle',
       title: 'Job Title',
@@ -71,31 +79,8 @@ export default defineType({
     prepare(selection) {
       const { title, subtitle } = selection
       
-      function extractString(value: any): string {
-        if (typeof value === 'string') {
-          return value
-        }
-        if (value && typeof value === 'object') {
-          if (Array.isArray(value)) {
-            const firstBlock = value[0]
-            if (firstBlock && typeof firstBlock === 'object') {
-              if ('children' in firstBlock && Array.isArray(firstBlock.children)) {
-                return firstBlock.children.map((c: any) => c.text).join('')
-              }
-              if ('text' in firstBlock && typeof firstBlock.text === 'string') {
-                return firstBlock.text
-              }
-            }
-            return ''
-          }
-          const localizedValue = value.en || value.th || ''
-          return extractString(localizedValue)
-        }
-        return ''
-      }
-      
-      const displayTitle = extractString(title) || 'Untitled Experience'
-      const displayDescription = extractString(subtitle)
+      const displayTitle = extractPreviewText(title) || 'Untitled Experience'
+      const displayDescription = extractPreviewText(subtitle)
       
       return {
         title: displayTitle,

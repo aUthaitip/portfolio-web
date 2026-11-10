@@ -41,7 +41,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   }
 
   return (
-    <div className="flex flex-col min-h-screen pt-20 pb-20 bg-background">
+    <div className="interior-page project-detail-page">
       <ProjectContent project={project} />
     </div>
   )

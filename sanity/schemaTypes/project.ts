@@ -1,10 +1,31 @@
 import { defineField, defineType } from 'sanity'
+import { extractPreviewText } from '../lib/preview'
 
 export default defineType({
   name: 'project',
   title: 'Project',
   type: 'document',
   fields: [
+    defineField({
+      name: 'projectType',
+      title: 'Project Type',
+      type: 'string',
+      initialValue: 'website',
+      options: { list: [{ title: 'Website', value: 'website' }, { title: 'UI/UX Design', value: 'design' }], layout: 'radio' },
+    }),
+    defineField({
+      name: 'figmaUrl',
+      title: 'Figma Design / Prototype URL',
+      type: 'url',
+      description: 'Use a Figma link that visitors have permission to view.',
+      validation: (Rule) => Rule.uri({ scheme: ['https'] }).custom((value) => {
+        if (!value) return true
+        try {
+          const host = new URL(value).hostname
+          return host === 'figma.com' || host === 'www.figma.com' || 'Enter a figma.com URL.'
+        } catch { return 'Enter a valid Figma URL.' }
+      }),
+    }),
     defineField({
       name: 'title',
       title: 'Title',
@@ -68,31 +89,8 @@ export default defineType({
     prepare(selection) {
       const { title, subtitle, media } = selection
       
-      function extractString(value: any): string {
-        if (typeof value === 'string') {
-          return value
-        }
-        if (value && typeof value === 'object') {
-          if (Array.isArray(value)) {
-            const firstBlock = value[0]
-            if (firstBlock && typeof firstBlock === 'object') {
-              if ('children' in firstBlock && Array.isArray(firstBlock.children)) {
-                return firstBlock.children.map((c: any) => c.text).join('')
-              }
-              if ('text' in firstBlock && typeof firstBlock.text === 'string') {
-                return firstBlock.text
-              }
-            }
-            return ''
-          }
-          const localizedValue = value.en || value.th || ''
-          return extractString(localizedValue)
-        }
-        return ''
-      }
-      
-      const displayTitle = extractString(title) || 'Untitled Project'
-      const displaySummary = extractString(subtitle)
+      const displayTitle = extractPreviewText(title) || 'Untitled Project'
+      const displaySummary = extractPreviewText(subtitle)
       
       return {
         title: displayTitle,
